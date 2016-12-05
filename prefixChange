@@ -7,7 +7,7 @@ usage()
 This script will change prefix for your classes.
 
 Usage:
-	prefixChange <oldPrefix> <newPrefix> [directory]
+	prefixChange [--simple] <oldPrefix> <newPrefix> <directory>
 '
 
     exit 0
@@ -27,9 +27,9 @@ main()
 	DIR="$3"
 
 	echo "Renaming files..."
-	find "$DIR" -regex ".*/${OLD_PREFIX}.*" -exec rename "s#(.*)/${OLD_PREFIX}(\\w+)\.([a-zA-Z]*)#\$1/${NEW_PREFIX}\$2.\$3#" {} \;
+	find "$DIR" -regex ".*/${OLD_PREFIX}.*" -exec rename "s/${OLD_PREFIX}/${NEW_PREFIX}/g" {} \;
 	echo "Changing file contents..."
-	find -E "$DIR" -iregex '.*\.(h|m|mm|swift|pbxproj|storyboard)' -exec sed -i '' "s/\([^a-zA-Z]\)${OLD_PREFIX}\(\w*\)/\1${NEW_PREFIX}\2/g" {} \;
+	find -E "$DIR" -iregex '.*\.(h|m|mm|swift|pbxproj|storyboard)' -exec sed -i '' "s/${OLD_PREFIX}/${NEW_PREFIX}/g" {} \;
 	echo "Done."
 }
 
