@@ -7,7 +7,7 @@ usage()
 This script will change prefix for your classes.
 
 Usage:
-	prefixChange [--simple] <oldPrefix> <newPrefix> <directory>
+	prefixChange <oldPrefix> <newPrefix> <directory>
 '
 
     exit 0
