@@ -27,7 +27,7 @@ main()
 	DIR="$3"
 
 	echo "Renaming files..."
-	find "$DIR" -regex ".*/${OLD_PREFIX}.*" -exec rename "s/${OLD_PREFIX}/${NEW_PREFIX}/g" {} \;
+	find "$DIR" -name "*${OLD_PREFIX}*" -exec rename "s/${OLD_PREFIX}/${NEW_PREFIX}/g" {} \;
 	echo "Changing file contents..."
 	find -E "$DIR" -iregex '.*\.(h|m|mm|swift|pbxproj|storyboard)' -exec sed -i '' "s/${OLD_PREFIX}/${NEW_PREFIX}/g" {} \;
 	echo "Done."
